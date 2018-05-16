@@ -42,12 +42,12 @@ new Vue({
             let tasks = this.tasks;
             switch (this.showingOption) {
                 case 'Done':
-                    tasks = this.tasks.filter(function (task) {
+                    tasks = tasks.filter(function (task) {
                         return task.isDone === true;
                     });
                     break;
                 case 'Undone':
-                    tasks = this.tasks.filter(function (task) {
+                    tasks = tasks.filter(function (task) {
                         return task.isDone === false;
                     });
                     break;
