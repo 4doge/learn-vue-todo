@@ -67,6 +67,9 @@ new Vue({
                 });
                 this.title = null;
             }
+        },
+        deleteTask: function(index) {
+            this.tasks.splice(index, 1);
         }
     }
 });
