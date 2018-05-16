@@ -3,6 +3,7 @@ new Vue({
     data: {
         title: "",
         keyword: "",
+        showingOption: "All",
         tasks: [
             {
                 isDone: false,
@@ -38,13 +39,25 @@ new Vue({
             task.isDone = !task.isDone;
         },
         filterTasksByKeyword: function(keyword) {
+            let tasks = this.tasks;
+            switch (this.showingOption) {
+                case 'Done':
+                    tasks = this.tasks.filter(function (task) {
+                        return task.isDone === true;
+                    });
+                    break;
+                case 'Undone':
+                    tasks = this.tasks.filter(function (task) {
+                        return task.isDone === false;
+                    });
+                    break;
+            }
             if (keyword) {
-                return this.tasks.filter(function(task) {
+                tasks = tasks.filter(function(task) {
                     return task.title.toLowerCase() === keyword.toLowerCase();
                 });
-            } else {
-                return this.tasks;
             }
+            return tasks;
         },
         createNewTask: function(title) {
             if (title) {
