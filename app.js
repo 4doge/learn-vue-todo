@@ -1,19 +1,22 @@
 new Vue({
     el: '#app',
     data: {
-        title: "",
-        keyword: "",
-        showingOption: "All",
+        title: '',
+        keyword: '',
+        showingOption: 'All',
         tasks: [
             {
+                uuid: '67c5e6a0-9037-4dec-95f8-41c544a8ce62',
                 isDone: false,
                 title: 'First'
             },
             {
+                uuid: 'e799211c-662e-4d4a-8184-9a17d0add41b',
                 isDone: true,
                 title: 'Second'
             },
             {
+                uuid: '97911934-2a93-44ce-b0c0-674352758a9b',
                 isDone: false,
                 title: 'Third'
             }
@@ -63,13 +66,26 @@ new Vue({
             if (title) {
                 this.tasks.push({
                     isDone: false,
-                    title: title
+                    title: title,
+                    uuid: this.generateUUID()
                 });
                 this.title = null;
             }
         },
-        deleteTask: function(index) {
+        deleteTask: function(task) {
+            let index = this.tasks.indexOf(task);
             this.tasks.splice(index, 1);
+        },
+        generateUUID: function() {
+            let uuid = '', i, random;
+            for (i = 0; i < 32; i++) {
+                random = Math.random() * 16 | 0;
+                if (i === 8 || i === 12 || i === 16 || i === 20) {
+                    uuid += '-'
+                }
+                uuid += (i === 12 ? 4 : (i === 16 ? (random & 3 | 8) : random)).toString(16);
+            }
+            return uuid;
         }
     }
 });
