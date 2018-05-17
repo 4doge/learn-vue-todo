@@ -43,7 +43,7 @@
                 </div>
                 <ul class="list-group">
                     <li class="list-group-item clearfix" v-for="task in filterTasksByKeyword(keyword)">
-                        <span @click="markAsDone(task)" :class="{done: task.isDone}">{{ task.title }} {{ task.uuid }}</span>
+                        <span @click="markAsDone(task)" :class="{done: task.isDone}">{{ task.title }}</span>
                         <span @click="deleteTask(task)" class="float-right">
                             <i class="fa fa-times"></i>
                         </span>
