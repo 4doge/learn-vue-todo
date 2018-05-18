@@ -4,21 +4,26 @@ new Vue({
         title: '',
         keyword: '',
         showingOption: 'All',
+        taskPriority: '1',
+        sortPriority: 'asc',
         tasks: [
             {
                 uuid: '67c5e6a0-9037-4dec-95f8-41c544a8ce62',
                 isDone: false,
-                title: 'First'
+                title: 'First',
+                priority: 2
             },
             {
                 uuid: 'e799211c-662e-4d4a-8184-9a17d0add41b',
                 isDone: true,
-                title: 'Second'
+                title: 'Second',
+                priority: 1
             },
             {
                 uuid: '97911934-2a93-44ce-b0c0-674352758a9b',
                 isDone: false,
-                title: 'Third'
+                title: 'Third',
+                priority: 3
             }
         ]
     },
@@ -43,6 +48,7 @@ new Vue({
         },
         filterTasksByKeyword: function(keyword) {
             let tasks = this.tasks;
+            let sortPriority = this.sortPriority;
             switch (this.showingOption) {
                 case 'Done':
                     tasks = tasks.filter(function (task) {
@@ -60,6 +66,13 @@ new Vue({
                     return task.title.toLowerCase() === keyword.toLowerCase();
                 });
             }
+            tasks = tasks.slice().sort(function(task1, task2) {
+                if (sortPriority === 'asc') {
+                    return task1.priority - task2.priority;
+                } else {
+                    return task2.priority - task1.priority;
+                }
+            });
             return tasks;
         },
         createNewTask: function(title) {
@@ -67,8 +80,10 @@ new Vue({
                 this.tasks.push({
                     isDone: false,
                     title: title,
-                    uuid: this.generateUUID()
+                    uuid: this.generateUUID(),
+                    priority: this.taskPriority
                 });
+                this.taskPriority = 1;
                 this.title = null;
             }
         },

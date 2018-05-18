@@ -18,9 +18,20 @@
                     <div class="progress-bar" role="progressbar" :style="{width: percentsDone + '%'}">{{ percentsDone }}%</div>
                 </div>
                 <hr>
-                <div class="input-group mb-3">
-                    <input v-model="title" type="text" class="form-control" placeholder="Title">
-                    <div class="input-group-append">
+                <div class="row">
+
+                    <div class="col-5">
+                        <input v-model="title" type="text" class="form-control" placeholder="Title">
+                    </div>
+                    <div class="col-3 justify-content-center">
+                        <select v-model="taskPriority" class="custom-select">
+                            <option disabled>Priority</option>
+                            <option selected>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                        </select>
+                    </div>
+                    <div class="col-2">
                         <button @click="createNewTask(title)" class="btn btn-outline-primary" type="button">Create</button>
                     </div>
                 </div>
@@ -29,7 +40,7 @@
                     <input v-model="keyword" type="text" class="form-control" placeholder="Search">
                 </div>
                 <div class="input-group mb-3">
-                    <div class="btn-group btn-group-toggle" >
+                    <div class="btn-group btn-group-toggle">
                         <label class="btn btn-outline-primary" :class="{active: showingOption == 'All'}">
                             <input type="radio" value="All" v-model="showingOption"> All
                         </label>
@@ -41,9 +52,19 @@
                         </label>
                     </div>
                 </div>
+                <div class="input-group mb-3">
+                    <div class="btn-group btn-group-toggle">
+                        <label class="btn btn-outline-primary" :class="{active: sortPriority == 'asc'}">
+                            <input type="radio" value="asc" v-model="sortPriority"> Ascending
+                        </label>
+                        <label class="btn btn-outline-primary" :class="{active: sortPriority == 'desc'}">
+                            <input type="radio" value="desc" v-model="sortPriority"> Descending
+                        </label>
+                    </div>
+                </div>
                 <ul class="list-group">
                     <li class="list-group-item clearfix" v-for="task in filterTasksByKeyword(keyword)">
-                        <span @click="markAsDone(task)" :class="{done: task.isDone}">{{ task.title }}</span>
+                        <span @click="markAsDone(task)" :class="{done: task.isDone}">{{ task.title }} - {{ task.priority }}</span>
                         <span @click="deleteTask(task)" class="float-right">
                             <i class="fa fa-times"></i>
                         </span>
