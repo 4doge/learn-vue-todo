@@ -75,11 +75,11 @@ new Vue({
             });
             return tasks;
         },
-        createNewTask: function(title) {
-            if (title) {
+        createNewTask: function() {
+            if (this.title) {
                 this.tasks.push({
                     isDone: false,
-                    title: title,
+                    title: this.title,
                     uuid: this.generateUUID(),
                     priority: this.taskPriority
                 });
