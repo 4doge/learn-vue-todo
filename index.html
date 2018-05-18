@@ -19,11 +19,10 @@
                 </div>
                 <hr>
                 <div class="row">
-
-                    <div class="col-5">
+                    <div class="col-8">
                         <input v-model="title" type="text" class="form-control" placeholder="Title">
                     </div>
-                    <div class="col-3 justify-content-center">
+                    <div class="col-2">
                         <select v-model="taskPriority" class="custom-select">
                             <option disabled>Priority</option>
                             <option selected>1</option>
@@ -32,7 +31,7 @@
                         </select>
                     </div>
                     <div class="col-2">
-                        <button @click="createNewTask" class="btn btn-outline-primary" type="button">Create</button>
+                        <button @click="createNewTask" class="btn btn-outline-primary float-right" type="button">Create</button>
                     </div>
                 </div>
                 <hr>
