@@ -2,6 +2,8 @@
 
 This repository contain codebase for the simple [Vue.js](https://github.com/vuejs/vue) based [TODO](https://en.wikipedia.org/wiki/Time_management) application.
 
+![Demo](demo.png)
+
 For more details, check out [demo](https://4doge.github.io/learn-vue-todo/).
 
 # Possibilities
